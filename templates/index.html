@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -7,17 +6,12 @@
 
       <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
 
-
-
     <!-- Required meta tags -->
     <meta charset="utf-8" />
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
-
-
-
     <!-- Bulma CSS -->
     <link
       rel="stylesheet"
@@ -39,17 +33,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
     <script src="{{ url_for('static', filename='main.js') }}"></script>
 
-      <!-- AOS -->
-      <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-      <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-      <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
-
-    <script>
-      function searchClick() {
-        let keyword = $("#keyword").val();
-        searchItems(keyword);
-      }
-    </script>
   </head>
   <body>
     <!-- 상단 nav bar -->
@@ -107,7 +90,7 @@
             />
           </div>
         </div>
-        <button class="button is-warning search-btn"  onclick="searchClick()">
+        <button class="button is-warning search-btn"  onclick="searchItems()">
           검색
         </button>
       </article>

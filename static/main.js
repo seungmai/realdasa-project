@@ -1,19 +1,14 @@
-
-// AOS
-AOS.init();
-
-$(document).ready(function () {
-});
-
-product_id = soup.select_onee()
-
-function searchItems(keyword) {
+function searchItems() {
+    $('#item-list').empty();
+    let keyword = $("#keyword").val();
+    console.log(keyword);
     $.ajax({
         type: "GET",
         url: "/api/getItemList?keyword=" + keyword,
         data: {},
         success: function (response) {
             for (let i in response) {
+                let product = response[i];
                 let title = response[i].title;
                 let link = response[i].link;
                 let lprice = response[i].lprice;
@@ -32,7 +27,7 @@ function searchItems(keyword) {
                                     </div>
                                     <div>
                                         <a href=${link} style="color: #f2d184">최저가 구매하기</a>
-                                        <a href=${productId} style="color: #f2d184">찜하기하트</a>
+                                        <a style="color: #f2d184" onclick="save_jjim('${productId}, ${title}', ${link}', ${lprice}', ${image}')" >찜하기하트</a>
                                     </div>
                                 </div>`;
                 $("#item-list").append(temp_html);
@@ -49,4 +44,49 @@ function sign_out() {
 
 function main() {
     window.location.href = "/";
+}
+
+function save_jjim(productId, title) {
+    $.ajax({
+      type:"POST",
+      url:"/user/saveJJIM",
+      dataType : "json",
+      data:{
+        "productId": productId,
+        "title": title,
+        "image": image,
+        "lprice": lprice,
+        "link": link
+      },
+      success: function(response){
+      }
+    });
+}
+  
+function delete_jjim() {
+    $.ajax({
+        type:"POST",
+        url:"/user/deleteJJIM",
+        data:{
+            productId: productId
+        },
+        success: function(response){
+            alert(response['msg']);
+            window.location.href="/user/{{ user_info.username }}"
+        }
+    });
+}
+
+function getMyProducts() {
+    $.ajax({
+        type:"POST",
+        url:"/user/{{ user_info.username }}",
+        data:{
+        productId: productId
+        },
+        success: function(response){
+            alert(response['msg']);
+            window.location.href="/user/{{ user_info.username }}"
+        }
+    });
 }

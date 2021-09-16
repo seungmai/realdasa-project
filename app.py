@@ -25,7 +25,7 @@ app.config['UPLOAD_FOLDER'] = "./static/profile_pics"
 
 SECRET_KEY = 'SPARTA'
 
-client = MongoClient('mongodb://15.164.99.26', 27017, username="test", password="test")
+client = MongoClient('mongodb://54.180.151.195', 27017, username="test", password="test")
 db = client.dbsparta_plus_week4
 
 
@@ -130,9 +130,12 @@ def user(username):
         status = (username == payload["id"])  # 내 프로필이면 True, 다른 사람 프로필 페이지면 False
 
         user_info = db.users.find_one({"username": username}, {"_id": False})
-        return render_template('user.html', user_info=user_info, status=status)
+        products = list(db.product.find({},{'_id':False}))
+
+        return render_template('user.html', user_info=user_info, status=status, products=products)
     except (jwt.ExpiredSignatureError, jwt.exceptions.DecodeError):
         return redirect(url_for("home"))
+
 
 #naver api 가져오기 함수
 def getSearchList(keyword,URL):
@@ -159,11 +162,11 @@ def getSearchList(keyword,URL):
 
     return itemList;
 
+
 # API 역할을 하는 부분
 @app.route('/api/getItemList', methods=['GET'])
 @as_json
 def getShops():
-
     if 'keyword' in request.args:
         keyword = str(request.args['keyword'])
     else:
@@ -171,6 +174,49 @@ def getShops():
     
     return getSearchList(keyword,NAVER_SHOP_API_URL)
 
+
+# 찜 추가
+@app.route('/user/saveJJIM', methods=['POST'])
+@as_json
+def save_jjim():
+    token_receive = request.cookies.get('mytoken')
+    try:
+        payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+        productId = request.form['productId']
+        image = request.form['image']
+        title = request.form['title']
+        lprice = request.form['lprice']
+        link = request.form['link']
+
+        if( db.product.find_one({"userid": payload["id"], "itemId": productId}).count() > 0 ):
+            return jsonify({'msg': '해당 상품은 이미 저장되어있습니다.'})
+        
+        db.product.insert_one({"userid": payload["id"], "itemId": productId, "image": image, "title": title, "lprice": lprice, "link": link})
+        return render_template('user.html')
+        
+    except jwt.ExpiredSignatureError:
+        return redirect(url_for("login", msg="로그인 시간이 만료되었습니다."))
+    except jwt.exceptions.DecodeError:
+        return redirect(url_for("login", msg="로그인 정보가 존재하지 않습니다."))
+
+# 찜 삭제
+@app.route('/user/deleteJJIM', methods=['POST'])
+@as_json
+def delete_jjim():
+    token_receive = request.cookies.get('mytoken')
+    try:
+        payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+        productId = request.form['productId']
+        product = db.product.delete_one({"userid": payload["id"], "itemId": productId})
+
+        if( product is None ):
+            return jsonify({'msg': '존재하지 않는 상품입니다.'})
+        else:
+            return jsonify({'result': 'success', 'msg': '찜 취소가 완료되었습니다.'})
+    except jwt.ExpiredSignatureError:
+        return redirect(url_for("login", msg="로그인 시간이 만료되었습니다."))
+    except jwt.exceptions.DecodeError:
+        return redirect(url_for("login", msg="로그인 정보가 존재하지 않습니다."))
 
 
 if __name__ == '__main__':
