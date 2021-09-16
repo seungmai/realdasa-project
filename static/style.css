@@ -1,5 +1,5 @@
-*{
-  box-sizing:border-box;
+* {
+  box-sizing: border-box;
 }
 
 body {
@@ -19,11 +19,7 @@ body {
   padding: 1rem 1.5rem;
   max-width: 1000px;
   margin: auto;
-
-
 }
-
-
 
 .main-screen {
   background-color: #f2d184;
@@ -39,7 +35,6 @@ body {
 .main-img-box {
   width: 60%;
   height: 100%;
-
 }
 
 .main-img {
@@ -48,7 +43,13 @@ body {
   animation: 3s linear 1s infinite running slidein;
 }
 
-@keyframes slidein { 0% { margin-right: 500px; } 100% { margin-left: 900px; }
+@keyframes slidein {
+  0% {
+    margin-right: 500px;
+  }
+  100% {
+    margin-left: 900px;
+  }
 }
 
 .search-btn {
@@ -62,14 +63,14 @@ body {
 }
 
 #item-list {
-
   display: flex;
   justify-content: center;
   text-align: center;
   flex-wrap: wrap;
   border-radius: 20px;
-  margin:30px;
-
+  margin: 30px;
 }
 
-
+.card {
+  margin: 3px;
+}
