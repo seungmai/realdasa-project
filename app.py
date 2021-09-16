@@ -128,22 +128,11 @@ def user(username):
     try:
         payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
         status = (username == payload["id"])  # 내 프로필이면 True, 다른 사람 프로필 페이지면 False
-        
+
         user_info = db.users.find_one({"username": username}, {"_id": False})
         return render_template('user.html', user_info=user_info, status=status)
     except (jwt.ExpiredSignatureError, jwt.exceptions.DecodeError):
         return redirect(url_for("home"))
-
-
-# search HTML 화면 보여주기
-
-
-
-# 개인 장바구니 화면 보여주기
-@app.route('/cart')
-def cartPage():
-    return render_template('cart.html')
-
 
 #naver api 가져오기 함수
 def getSearchList(keyword,URL):
@@ -165,7 +154,8 @@ def getSearchList(keyword,URL):
         link =item['link']
         image =item['image']
         lprice = item['lprice']
-        itemList.append({'title':title,'link': link, 'image': image, 'lprice': lprice})
+        productId = item['productId']
+        itemList.append({'title':title,'link': link, 'image': image, 'lprice': lprice, 'productId': productId})
 
     return itemList;
 

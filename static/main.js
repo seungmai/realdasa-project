@@ -18,8 +18,7 @@ function searchItems(keyword) {
                 let link = response[i].link;
                 let lprice = response[i].lprice;
                 let image = response[i].image;
-
-
+                let productId = response[i].productId;
 
                 let temp_html = `<div class="card border-warning  mb-3" style="width:18rem">
                                     <div class=" border-warning  mb-3">
@@ -33,11 +32,9 @@ function searchItems(keyword) {
                                     </div>
                                     <div>
                                         <a href=${link} style="color: #f2d184">최저가 구매하기</a>
-                                        <a href=${link} style="color: #f2d184">최저가 구매하기</a>
+                                        <a href=${productId} style="color: #f2d184">찜하기하트</a>
                                     </div>
                                 </div>`;
-
-                console.log(temp_html);
                 $("#item-list").append(temp_html);
             }
         },
