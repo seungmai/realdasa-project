@@ -1,10 +1,123 @@
+
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>다사</title>
-</head>
-<body>
+  <head>
+    <!-- Webpage Title -->
+    <title>필요한게 있다면 DASA</title>
 
-</body>
+      <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
+
+
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+
+
+    <!-- Bulma CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css"
+    />
+    <!-- Font Awesome CSS -->
+    <link
+      href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+      rel="stylesheet"
+    />
+    <!-- CSS -->
+    <link
+      href="{{ url_for('static', filename='style.css') }}"
+      rel="stylesheet"
+    />
+
+    <!-- JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+    <script src="{{ url_for('static', filename='main.js') }}"></script>
+
+      <!-- AOS -->
+      <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+      <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+      <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+
+    <script>
+      function searchClick() {
+        let keyword = $("#keyword").val();
+        searchItems(keyword);
+      }
+    </script>
+  </head>
+  <body>
+    <!-- 상단 nav bar -->
+    <nav class="navbar">
+      <div class="container">
+        <div id="navMenu" class="navbar-menu">
+          <div class="navbar-start">
+            <a class="navbar-item main-logo" onclick="main()"> DASA </a>
+          </div>
+
+          <div class="navbar-end">
+            <div class="navbar-item">
+              <div class="buttons">
+                <a
+                  class="button is-info is-outlined"
+                  aria-label="logout"
+                  onclick="sign_out()"
+                >
+                  Log out
+                </a>
+                <a
+                  class="button is-danger is-outlined"
+                  href="/user/{{ user_info.username }}"
+                  >JJIM</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <section class="hero is-halfheight main-screen">
+      <div class="hero-body main-screen-item">
+        <p class="title">사고싶은게 있다면 검색 후 찜!</p>
+        <div class="main-img-box">
+          <img
+            class="main-img"
+            src="{{ url_for('static', filename='cart.png') }}"
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- 검색창 -->
+    <section class="section">
+      <article class="media">
+        <div class="media-content">
+          <div class="field">
+            <input
+              class="input is-warning"
+              id="keyword"
+              type="text"
+              placeholder="원하는 상품을 검색하세요"
+            />
+          </div>
+        </div>
+        <button class="button is-warning search-btn"  onclick="searchClick()">
+          검색
+        </button>
+      </article>
+    </section>
+
+    <!-- 상품카드 -->
+    <section class="section">
+      <div class="media-content">
+        <div class="field" id="item-list" ></div>
+      </div>
+    </section>
+  </body>
 </html>
