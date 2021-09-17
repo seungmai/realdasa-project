@@ -30,7 +30,15 @@
     <!-- JS -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+     <script>
+      $("#login_form").keypress(function(e){
 
+        if (e.keyCode === 13){
+
+         sign_in();
+        }
+      });
+    </script>
     <script>
       // {% if msg %}
       //     alert("{{ msg }}")
@@ -271,7 +279,7 @@
               </div>
               <div id="div-sign-in-or-up" class="has-text-centered">
                 <nav class="level is-mobile">
-                  <button
+                  <button in="login_form"
                     class="level-item button is-sparta"
                     onclick="sign_in()"
                   >

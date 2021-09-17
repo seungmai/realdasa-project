@@ -54,20 +54,20 @@
                 let image = product.image;
                 let productId = product.productId;
 
-                let temp_html = `<div class="card border-warning  mb-3" style="width:18rem">
-                                <div class=" border-warning  mb-3">
-                                    <img class="card-img-top" style="width: 18rem;"src="${image}" alt="Card image cap">
-                                </div>
-                                <div class="card-body text-warning ">
-                                    <ul class="list-group list-group-flush">
-                                        <li class="list-group-item" style="font-weight: bold">${title}</li>
-                                        <li class="list-group-item">최저가 ${lprice}</li>
-                                    </ul>
-                                </div>
-                                <div>
-                                    <a href=${link} style="color: #f2d184">최저가 구매하기</a>
-                                    <a style="color: #f2d184" onclick="delete_jjim('${productId}')" >삭제하기</a>
-                                </div>
+                let temp_html = `<div class="card mb-3" style="width: 100rem">
+                                    <div class="mb-3">
+                                        <img class="card-img-top" style="width: 18rem;"src="${image}" alt="Card image cap">
+                                    </div>
+                                    <div class="card-body text-warning ">
+                                        <ul class="list-group list-group-flush">
+                                            <li class="list-group-item" style="font-weight: bold">${title}</li>
+                                            <li class="list-group-item">최저가 ${lprice}</li>
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <a href=${link} target='_blank' style="color: #f2d184">최저가 구매하기</a>
+                                        <a style="color: #f2d184" onclick="delete_jjim('${productId}')" >삭제하기</a>
+                                    </div>
                             </div>`;
               $("#my-item-list").append(temp_html);
             }
@@ -105,9 +105,8 @@
   <!-- 상품카드 -->
     <section class="section">
       <div class="media-content">
-        <div class="field" id="my-item-list" ></div>
+        <div class="field card-card" id="my-item-list" ></div>
       </div>
     </section>
-
   </body>
 </html>

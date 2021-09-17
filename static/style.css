@@ -71,5 +71,29 @@ body {
   margin:30px;
 
 }
+.card-card {
+  display: flex;
+  justify-content: center;
+}
+
+.list-group 
+.list-group-item{
+  display: flex;
+  text-align: center;
+}
+/* .card {
+  display: flex;
+  justify-content: center;
+}
+
+.border-warning {
+  display: flex;
+  justify-content: center;
+}
+
+.mb-3 {
+  display: flex;
+  justify-content: center;
+} */
 
 

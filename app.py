@@ -204,7 +204,7 @@ def delete_jjim():
     try:
         payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
         productId = request.form['productId']
-        product = db.product.delete_one({"userid": payload["id"], "itemId": productId})
+        product = db.product.delete_one({"userid": payload["id"], "productId": productId})
 
         if( product is None ):
             return jsonify({'msg': '존재하지 않는 상품입니다.'})

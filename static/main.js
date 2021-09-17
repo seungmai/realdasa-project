@@ -26,7 +26,7 @@ function searchItems() {
                                         </ul>
                                     </div>
                                     <div>
-                                        <a href=${link} style="color: #f2d184">최저가 구매하기</a>
+                                        <a href=${link} target='_blank' style="color: #f2d184">최저가 구매하기</a>
                                         <a style="color: #f2d184" onclick="save_jjim('${productId}', '${title}',' ${link}',' ${lprice}', '${image}')" >찜하기하트</a>
                                     </div>
                                 </div>`;
@@ -73,8 +73,7 @@ function delete_jjim(productId) {
         },
         success: function(response){
             alert(response['msg']);
-            window.location.href="/"
-            // window.location.href="/user/{{ user_info.username }}"
+            window.location.href="/user/{{ user_info.username }}"
         }
     });
 }
