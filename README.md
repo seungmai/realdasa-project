@@ -31,7 +31,7 @@
 - Front-end: Html, CSS, JavaScript
 - Back-end: Python, mongodb
 
-# ⌨️ 느낀점
+# ⌨️ 팀 회고
 
 - 박새봄
 - 송지은
