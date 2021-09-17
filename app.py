@@ -130,7 +130,7 @@ def user(username):
         status = (username == payload["id"])  # 내 찜 목록이면 True, 다른 사람 목록면 False
 
         user_info = db.users.find_one({"username": username}, {"_id": False})
-        return render_template('user.html', user_info=user_info, status=status)
+        return render_template('user.html', user_info=user_info, status=status )
     except (jwt.ExpiredSignatureError, jwt.exceptions.DecodeError):
         return redirect(url_for("home"))
 
@@ -185,7 +185,7 @@ def save_jjim():
         lprice = request.form['lprice']
         image = request.form['image']
 
-        product = db.product.find_one({"userid": payload["id"], "itemId": productId}, {"_id": False})
+        product = db.product.find_one({"userid": payload["id"], "productId": productId}, {"_id": False})
         if( product is not None ):
             return jsonify({'msg': '해당 상품은 이미 저장되어있습니다.'})
         

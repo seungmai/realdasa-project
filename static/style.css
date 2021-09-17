@@ -76,24 +76,10 @@ body {
   justify-content: center;
 }
 
-.list-group 
-.list-group-item{
-  display: flex;
-  text-align: center;
-}
-/* .card {
-  display: flex;
-  justify-content: center;
-}
-
-.border-warning {
-  display: flex;
-  justify-content: center;
-}
-
 .mb-3 {
   display: flex;
-  justify-content: center;
-} */
+}
 
-
+.card-body {
+  text-align: center;
+}

@@ -44,6 +44,7 @@
           data:{
           },
           success: function(response){
+            
             my_products = response['my_products'];
             for( i=0; i<my_products.length; i++)
             {
@@ -54,7 +55,7 @@
                 let image = product.image;
                 let productId = product.productId;
 
-                let temp_html = `<div class="card mb-3" style="width: 100rem">
+                let temp_html = `<div class="card cardmb-3" style="width: 100rem">
                                     <div class="mb-3">
                                         <img class="card-img-top" style="width: 18rem;"src="${image}" alt="Card image cap">
                                     </div>
