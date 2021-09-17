@@ -169,7 +169,6 @@ def getShops():
     
     return getSearchList(keyword,NAVER_SHOP_API_URL)
 
-
 # 찜 추가
 @app.route('/user/saveJJIM', methods=['POST'])
 def save_jjim():
