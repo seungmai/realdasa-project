@@ -121,18 +121,16 @@ def save_img():
         return redirect(url_for("home.html"))
 
 
-# 각 사용자의 프로필과 글을 모아볼 수 있는 공간
+# 각 사용자의 찜한 목록 보여주기
 @app.route('/user/<username>')
 def user(username):
     token_receive = request.cookies.get('mytoken')
     try:
         payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
-        status = (username == payload["id"])  # 내 프로필이면 True, 다른 사람 프로필 페이지면 False
+        status = (username == payload["id"])  # 내 찜 목록이면 True, 다른 사람 목록면 False
 
         user_info = db.users.find_one({"username": username}, {"_id": False})
-        products = list(db.product.find({"userid": payload["id"]},{'_id':False}))
-
-        return render_template('user.html', user_info=user_info, status=status, products=products)
+        return render_template('user.html', user_info=user_info, status=status)
     except (jwt.ExpiredSignatureError, jwt.exceptions.DecodeError):
         return redirect(url_for("home"))
 
@@ -182,17 +180,16 @@ def save_jjim():
     try:
         payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
         productId = request.form['productId']
-        image = request.form['image']
         title = request.form['title']
-        lprice = request.form['lprice']
         link = request.form['link']
+        lprice = request.form['lprice']
+        image = request.form['image']
 
-        product = db.product.find_one({"userid": payload["id"], "itemId": productId})
+        product = db.product.find_one({"userid": payload["id"], "itemId": productId}, {"_id": False})
         if( product is not None ):
             return jsonify({'msg': '해당 상품은 이미 저장되어있습니다.'})
         
-        db.product.insert_one({"userid": payload["id"], "itemId": productId, "image": image, "title": title, "lprice": lprice, "link": link})
-        print("htmlt");
+        db.product.insert_one({"userid":payload["id"], "productId":productId, "image":image, "title":title, "lprice":lprice, "link":link})
         return jsonify({'msg': '저장이 완료되었습니다.'})
         
     except jwt.ExpiredSignatureError:
@@ -213,6 +210,21 @@ def delete_jjim():
             return jsonify({'msg': '존재하지 않는 상품입니다.'})
         else:
             return jsonify({'result': 'success', 'msg': '찜 취소가 완료되었습니다.'})
+    except jwt.ExpiredSignatureError:
+        return redirect(url_for("login", msg="로그인 시간이 만료되었습니다."))
+    except jwt.exceptions.DecodeError:
+        return redirect(url_for("login", msg="로그인 정보가 존재하지 않습니다."))
+
+
+# 찜 목록
+@app.route('/user/getListJJIM', methods=['GET'])
+def get_jjim():
+    token_receive = request.cookies.get('mytoken')
+    try:
+        payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+        products = list(db.product.find({"userid": payload["id"]},{'_id':False}))
+
+        return jsonify({'my_products': products})
     except jwt.ExpiredSignatureError:
         return redirect(url_for("login", msg="로그인 시간이 만료되었습니다."))
     except jwt.exceptions.DecodeError:
