@@ -35,8 +35,7 @@ def home():
     token_receive = request.cookies.get('mytoken')
     try:
         payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
-        user_info = db.users.find_one({"username": payload["id"]})
-        return render_template('index.html', user_info=user_info)
+        return render_template('index.html', username=payload["id"])
     except jwt.ExpiredSignatureError:
         return redirect(url_for("login", msg="로그인 시간이 만료되었습니다."))
     except jwt.exceptions.DecodeError:
@@ -205,6 +204,30 @@ def get_jjim():
     except jwt.exceptions.DecodeError:
         return redirect(url_for("login", msg="로그인 정보가 존재하지 않습니다."))
 
+
+# 프로필 업데이트
+@app.route('/update_profile', methods=['POST'])
+def save_img():
+    token_receive = request.cookies.get('mytoken')
+    try:
+        payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+        return jsonify({"result": "success", 'msg': '프로필을 업데이트했습니다.'})
+    except (jwt.ExpiredSignatureError, jwt.exceptions.DecodeError):
+        return redirect(url_for("home"))
+
+
+# 각 사용자의 프로필과 글을 모아볼 수 있는 공간
+@app.route('/user/<username>')
+def user(username):
+    token_receive = request.cookies.get('mytoken')
+    try:
+        payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+        status = (username == payload["id"])  # 내 프로필이면 True, 다른 사람 프로필 페이지면 False
+
+        user_info = db.users.find_one({"username": username}, {"_id": False})
+        return render_template('user.html', user_info=user_info, status=status)
+    except (jwt.ExpiredSignatureError, jwt.exceptions.DecodeError):
+        return redirect(url_for("home"))
 
 if __name__ == '__main__':
     app.run('0.0.0.0', port=5000, debug=True)
