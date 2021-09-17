@@ -15,18 +15,17 @@ function searchItems() {
         let image = product.image;
         let productId = product.productId;
 
-        let temp_html = `<div class="card border-warning  mb-3" style="width:18rem">
+        let temp_html = `<div class="card border-warning  mb-3" style="width:18rem;">
                                   <div class=" border-warning  mb-3">
-                                      <img class="card-img-top" style="width: 18rem;"src="${image}" alt="Card image cap">
+                                      <img class="card-img-top" style="width: 18rem; height:20rem;"src="${image}" alt="Card image cap">
                                   </div>
-                                  <div class="card-body text-warning ">
+                                  <div class="card-body text-warning card-text">
                                       <ul class="list-group list-group-flush">
-                                          <li class="list-group-item" style="font-weight: bold">${title}</li>
-                                          <li class="list-group-item">최저가 ${lprice}</li>
+                                          <li class="list-group-item">${title}</li>
+                                          <li class="list-group-item row-price">최저가 ${lprice}원</li>
                                       </ul>
                                   </div>
-                                  <div>
-                                      
+                                  <div class="btn-box">
                                   <button class="button is-danger is-light"><a href=${link} target='_blank' style="color: #ea4c89">최저가 구매하기</a></button>
                                   <button class="button is-info is-light"><a style="color: f4c046" onclick="save_jjim('${productId}', '${title}',' ${link}',' ${lprice}', '${image}')" >찜하기<i class="fab fa-gratipay"></i></a></button>    
                                   </div>

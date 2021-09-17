@@ -21,9 +21,14 @@
       href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
       rel="stylesheet"
     />
+
     <!-- CSS -->
     <link
       href="{{ url_for('static', filename='style.css') }}"
+      rel="stylesheet"
+    />
+    <link
+      href="{{ url_for('static', filename='user.css') }}"
       rel="stylesheet"
     />
     <style>
@@ -40,48 +45,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
     <script src="{{ url_for('static', filename='main.js') }}"></script>
-
-    <script>
-      $(document).ready(function () {
-        getMyProducts();
-      });
-
-      function getMyProducts() {
-        $.ajax({
-          type: "GET",
-          url: "/user/getListJJIM",
-          data: {},
-          success: function (response) {
-            my_products = response["my_products"];
-            for (i = 0; i < my_products.length; i++) {
-              let product = my_products[i];
-              let title = product.title;
-              let link = product.link;
-              let lprice = product.lprice;
-              let image = product.image;
-              let productId = product.productId;
-
-              let temp_html = `<div class="card cardmb-3" style="width: 100rem">
-                                    <div class="mb-3">
-                                        <img class="card-img-top" style="width: 18rem;"src="${image}" alt="Card image cap">
-                                    </div>
-                                    <div class="card-body text-warning ">
-                                        <ul class="list-group list-group-flush">
-                                            <li class="list-group-item" style="font-weight: bold">${title}</li>
-                                            <li class="list-group-item">최저가 ${lprice}</li>
-                                        </ul>
-                                    </div>
-                                    <div>
-                                        <a href=${link} target='_blank' style="color: #f2d184">최저가 구매하기</a>
-                                        <a style="color: #f2d184" onclick="delete_jjim('${productId}')" >삭제하기</a>
-                                    </div>
-                            </div>`;
-              $("#my-item-list").append(temp_html);
-            }
-          },
-        });
-      }
-    </script>
+    <script src="{{ url_for('static', filename='user.js') }}"></script>
   </head>
   <body>
     <nav class="navbar">
@@ -110,9 +74,13 @@
 
     <!-- 상품카드 -->
     <section class="section">
-      <div class="media-content">
-        <div class="field card-card" id="my-item-list"></div>
-      </div>
+      <div id="my-item-list"></div>
     </section>
+
+    <!-- Font Awesome -->
+    <script
+      src="https://kit.fontawesome.com/6478f529f2.js"
+      crossorigin="anonymous"
+    ></script>
   </body>
 </html>

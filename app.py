@@ -25,7 +25,7 @@ app.config['UPLOAD_FOLDER'] = "./static/profile_pics"
 
 SECRET_KEY = 'SPARTA'
 
-client = MongoClient('mongodb://15.164.99.26', 27017, username="test", password="test")
+client = MongoClient('mongodb://54.180.151.195', 27017, username="test", password="test")
 db = client.dbsparta_plus_week4
 
 
@@ -110,29 +110,6 @@ def check_dup():
     return jsonify({'result': 'success', 'exists': exists})
 
 
-# 프로필 업데이트
-@app.route('/update_profile', methods=['POST'])
-def save_img():
-    token_receive = request.cookies.get('mytoken')
-    try:
-        payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
-        return jsonify({"result": "success", 'msg': '프로필을 업데이트했습니다.'})
-    except (jwt.ExpiredSignatureError, jwt.exceptions.DecodeError):
-        return redirect(url_for("home"))
-
-
-# 각 사용자의 프로필과 글을 모아볼 수 있는 공간
-@app.route('/user/<username>')
-def user(username):
-    token_receive = request.cookies.get('mytoken')
-    try:
-        payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
-        status = (username == payload["id"])  # 내 프로필이면 True, 다른 사람 프로필 페이지면 False
-
-        user_info = db.users.find_one({"username": username}, {"_id": False})
-        return render_template('user.html', user_info=user_info, status=status)
-    except (jwt.ExpiredSignatureError, jwt.exceptions.DecodeError):
-        return redirect(url_for("home"))
 
 #naver api 가져오기 함수
 def getSearchList(keyword,URL):
@@ -185,10 +162,10 @@ def save_jjim():
 
         product = db.product.find_one({"userid": payload["id"], "productId": productId}, {"_id": False})
         if( product is not None ):
-            return jsonify({'msg': '해당 상품은 이미 저장되어있습니다.'})
+            return jsonify({'msg': '해당 상품은 이미 찜하셨어요🙌'})
         
         db.product.insert_one({"userid":payload["id"], "productId":productId, "image":image, "title":title, "lprice":lprice, "link":link})
-        return jsonify({'msg': '저장이 완료되었습니다.'})
+        return jsonify({'msg': '찜 완료❤'})
         
     except jwt.ExpiredSignatureError:
         return redirect(url_for("login", msg="로그인 시간이 만료되었습니다."))
@@ -207,7 +184,7 @@ def delete_jjim():
         if( product is None ):
             return jsonify({'msg': '존재하지 않는 상품입니다.'})
         else:
-            return jsonify({'result': 'success', 'msg': '찜 취소가 완료되었습니다.'})
+            return jsonify({'result': 'success', 'msg': '찜이 삭제되었습니다😢'})
     except jwt.ExpiredSignatureError:
         return redirect(url_for("login", msg="로그인 시간이 만료되었습니다."))
     except jwt.exceptions.DecodeError:
