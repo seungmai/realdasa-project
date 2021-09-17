@@ -42,10 +42,15 @@
     <script src="{{ url_for('static', filename='main.js') }}"></script>
 
     <script>
+
       $(document).ready(function () {
+
+        // 사용자 개인 화면 열릴(JJIM 버튼 화면) 때 개인 찜 상품 목록 조회
         getMyProducts();
+
       });
 
+      // 사용자 개인 찜 상품 목록 조회하여 #my-item-list에 붙이기
       function getMyProducts() {
         $.ajax({
           type: "GET",
@@ -108,7 +113,7 @@
       </div>
     </nav>
 
-    <!-- 상품카드 -->
+    <!-- 사용자가 찜한 상품 붙일 곳-->
     <section class="section">
       <div class="media-content">
         <div class="field card-card" id="my-item-list"></div>
