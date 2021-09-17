@@ -26,6 +26,15 @@
       href="{{ url_for('static', filename='login.css') }}"
       rel="stylesheet"
     />
+    <style>
+      @font-face {
+        font-family: "GmarketSansBold";
+        src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansBold.woff")
+          format("woff");
+        font-weight: normal;
+        font-style: normal;
+      }
+    </style>
 
     <!-- JS -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -206,6 +215,13 @@
           },
         });
       }
+
+      function Enter_Check() {
+        if (event.keyCode == 13) {
+          sign_in();
+          return;
+        }
+      }
     </script>
   </head>
   <body>
@@ -255,6 +271,7 @@
                   <div class="control has-icons-left">
                     <input
                       id="input-password"
+                      onkeydown="JavaScript:Enter_Check();"
                       class="input"
                       type="password"
                       placeholder="비밀번호"

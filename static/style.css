@@ -1,5 +1,6 @@
 * {
   box-sizing: border-box;
+  font-family: "GmarketSansBold";
 }
 
 body {
@@ -73,4 +74,36 @@ body {
 
 .card {
   margin: 3px;
+}
+
+.card-card {
+  display: flex;
+  justify-content: center;
+}
+
+.list-group .list-group-item {
+  display: flex;
+  text-align: center;
+}
+
+input,
+.button {
+  font-family: "GmarketSansBold";
+}
+
+#navMenu {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+#navbar-start {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+
+.container {
+  display: flex;
+  justify-content: space-around;
 }

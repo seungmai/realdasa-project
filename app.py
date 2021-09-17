@@ -171,6 +171,62 @@ def getShops():
     
     return getSearchList(keyword,NAVER_SHOP_API_URL)
 
+# 찜 추가
+@app.route('/user/saveJJIM', methods=['POST'])
+def save_jjim():
+    token_receive = request.cookies.get('mytoken')
+    try:
+        payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+        productId = request.form['productId']
+        title = request.form['title']
+        link = request.form['link']
+        lprice = request.form['lprice']
+        image = request.form['image']
+
+        product = db.product.find_one({"userid": payload["id"], "productId": productId}, {"_id": False})
+        if( product is not None ):
+            return jsonify({'msg': '해당 상품은 이미 저장되어있습니다.'})
+        
+        db.product.insert_one({"userid":payload["id"], "productId":productId, "image":image, "title":title, "lprice":lprice, "link":link})
+        return jsonify({'msg': '저장이 완료되었습니다.'})
+        
+    except jwt.ExpiredSignatureError:
+        return redirect(url_for("login", msg="로그인 시간이 만료되었습니다."))
+    except jwt.exceptions.DecodeError:
+        return redirect(url_for("login", msg="로그인 정보가 존재하지 않습니다."))
+
+# 찜 삭제
+@app.route('/user/deleteJJIM', methods=['POST'])
+def delete_jjim():
+    token_receive = request.cookies.get('mytoken')
+    try:
+        payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+        productId = request.form['productId']
+        product = db.product.delete_one({"userid": payload["id"], "productId": productId})
+
+        if( product is None ):
+            return jsonify({'msg': '존재하지 않는 상품입니다.'})
+        else:
+            return jsonify({'result': 'success', 'msg': '찜 취소가 완료되었습니다.'})
+    except jwt.ExpiredSignatureError:
+        return redirect(url_for("login", msg="로그인 시간이 만료되었습니다."))
+    except jwt.exceptions.DecodeError:
+        return redirect(url_for("login", msg="로그인 정보가 존재하지 않습니다."))
+
+
+# 찜 목록
+@app.route('/user/getListJJIM', methods=['GET'])
+def get_jjim():
+    token_receive = request.cookies.get('mytoken')
+    try:
+        payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
+        products = list(db.product.find({"userid": payload["id"]},{'_id':False}))
+
+        return jsonify({'my_products': products})
+    except jwt.ExpiredSignatureError:
+        return redirect(url_for("login", msg="로그인 시간이 만료되었습니다."))
+    except jwt.exceptions.DecodeError:
+        return redirect(url_for("login", msg="로그인 정보가 존재하지 않습니다."))
 
 
 if __name__ == '__main__':

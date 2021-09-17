@@ -1,6 +1,7 @@
 body {
   background-color: #f2d184;
   min-height: 100vh;
+  font-family: "GmarketSansBold";
 }
 
 .section {
@@ -36,4 +37,9 @@ body {
 
 .help {
   color: gray;
+}
+
+.button,
+input {
+  font-family: "GmarketSansBold";
 }
