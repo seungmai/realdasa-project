@@ -27,7 +27,7 @@ function searchItems() {
                                     </div>
                                     <div>
                                         <a href=${link} style="color: #f2d184">최저가 구매하기</a>
-                                        <a style="color: #f2d184" onclick="save_jjim('${productId}, ${title}', ${link}', ${lprice}', ${image}')" >찜하기하트</a>
+                                        <a style="color: #f2d184" onclick="save_jjim('${productId}', '${title}',' ${link}',' ${lprice}', '${image}')" >찜하기하트</a>
                                     </div>
                                 </div>`;
                 $("#item-list").append(temp_html);
@@ -46,7 +46,8 @@ function main() {
     window.location.href = "/";
 }
 
-function save_jjim(productId, title) {
+function save_jjim(productId, title, link, image, lprice) {
+    console.log(productId, title, link, image, lprice);
     $.ajax({
       type:"POST",
       url:"/user/saveJJIM",
@@ -59,6 +60,8 @@ function save_jjim(productId, title) {
         "link": link
       },
       success: function(response){
+        alert(response['msg']);
+          window.location.href="/user/{{ user_info.username }}"
       }
     });
 }
@@ -77,16 +80,32 @@ function delete_jjim() {
     });
 }
 
-function getMyProducts() {
-    $.ajax({
-        type:"POST",
-        url:"/user/{{ user_info.username }}",
-        data:{
-        productId: productId
-        },
-        success: function(response){
-            alert(response['msg']);
-            window.location.href="/user/{{ user_info.username }}"
-        }
-    });
+function getMyProducts(products) {
+    let my_products = products;
+    for( i=0; i<my_products.length; i++)
+    {
+        let product = my_products[i];
+        let title = product.title;
+        let link = product.link;
+        let lprice = product.lprice;
+        let image = product.image;
+        let productId = product.productId;
+        // console.log( title, lprice );
+        let temp_html = `<div class="card border-warning  mb-3" style="width:18rem">
+                            <div class=" border-warning  mb-3">
+                                <img class="card-img-top" style="width: 18rem;"src="${image}" alt="Card image cap">
+                            </div>
+                            <div class="card-body text-warning ">
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item" style="font-weight: bold">${title}</li>
+                                    <li class="list-group-item">최저가 ${lprice}</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <a href=${link} style="color: #f2d184">최저가 구매하기</a>
+                                <a style="color: #f2d184" onclick="save_jjim('${productId}', '${title}',' ${link}',' ${lprice}', '${image}')" >찜하기하트</a>
+                            </div>
+                        </div>`;
+        $("#my-item-list").append(temp_html);
+    }
 }

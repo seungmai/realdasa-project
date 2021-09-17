@@ -118,7 +118,7 @@ def save_img():
         payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
         return jsonify({"result": "success", 'msg': '프로필을 업데이트했습니다.'})
     except (jwt.ExpiredSignatureError, jwt.exceptions.DecodeError):
-        return redirect(url_for("home"))
+        return redirect(url_for("home.html"))
 
 
 # 각 사용자의 프로필과 글을 모아볼 수 있는 공간
@@ -130,7 +130,7 @@ def user(username):
         status = (username == payload["id"])  # 내 프로필이면 True, 다른 사람 프로필 페이지면 False
 
         user_info = db.users.find_one({"username": username}, {"_id": False})
-        products = list(db.product.find({},{'_id':False}))
+        products = list(db.product.find({"userid": payload["id"]},{'_id':False}))
 
         return render_template('user.html', user_info=user_info, status=status, products=products)
     except (jwt.ExpiredSignatureError, jwt.exceptions.DecodeError):
@@ -160,7 +160,7 @@ def getSearchList(keyword,URL):
         productId = item['productId']
         itemList.append({'title':title,'link': link, 'image': image, 'lprice': lprice, 'productId': productId})
 
-    return itemList;
+    return itemList
 
 
 # API 역할을 하는 부분
@@ -177,7 +177,6 @@ def getShops():
 
 # 찜 추가
 @app.route('/user/saveJJIM', methods=['POST'])
-@as_json
 def save_jjim():
     token_receive = request.cookies.get('mytoken')
     try:
@@ -188,11 +187,13 @@ def save_jjim():
         lprice = request.form['lprice']
         link = request.form['link']
 
-        if( db.product.find_one({"userid": payload["id"], "itemId": productId}).count() > 0 ):
+        product = db.product.find_one({"userid": payload["id"], "itemId": productId})
+        if( product is not None ):
             return jsonify({'msg': '해당 상품은 이미 저장되어있습니다.'})
         
         db.product.insert_one({"userid": payload["id"], "itemId": productId, "image": image, "title": title, "lprice": lprice, "link": link})
-        return render_template('user.html')
+        print("htmlt");
+        return jsonify({'msg': '저장이 완료되었습니다.'})
         
     except jwt.ExpiredSignatureError:
         return redirect(url_for("login", msg="로그인 시간이 만료되었습니다."))
@@ -201,7 +202,6 @@ def save_jjim():
 
 # 찜 삭제
 @app.route('/user/deleteJJIM', methods=['POST'])
-@as_json
 def delete_jjim():
     token_receive = request.cookies.get('mytoken')
     try:
