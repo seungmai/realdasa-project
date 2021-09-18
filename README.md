@@ -59,7 +59,7 @@
 - 찜하기 구현(중복안됨)
 - 삭제기능 구현
 
-# 🛠 개발 환경
+# 개발 환경
 
 - 웹서비스 개발(비주얼 스튜디오 코드, 파이참)
 
@@ -68,9 +68,9 @@
 - Front-end: Html5, CSS3, JavaScript(ES6)
 - Back-end: Python(3.8), Pymongo(3.12.0), Flask(2.0.1) , Jinja2(2.0.1)
 
-# ⌨️ 팀 프로젝트 회고
+# ⌨️ 느낀점
 
 - 박새봄 회고 ([미정]())
 - 송지은 회고 ([Naver]())
-- 김혜림 회고 ([미정]())
+- 김혜림 회고 ([Notion](https://www.notion.so/1-DASA-487ee2e425d74dfb995784efa36dac21))
 - 이승민 회고 ([Velog](https://velog.io/@tmdals3785/%ED%95%AD%ED%95%B4-99-1%EC%A3%BC%EC%B0%A8-%ED%9A%8C%EA%B3%A0-2))
