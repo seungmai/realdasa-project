@@ -70,7 +70,7 @@
 
 # ⌨️ 느낀점
 
-- 박새봄 회고 ([미정]())
+- 박새봄 회고 ([](https://velog.io/@bomboming/Weekly-I-Learned-%ED%95%AD%ED%95%B499-1%EC%A3%BC%EC%B0%A8-%ED%9A%8C%EA%B3%A0%EB%A1%9D))
 - 송지은 회고 ([Naver]())
 - 김혜림 회고 ([Notion](https://www.notion.so/1-DASA-487ee2e425d74dfb995784efa36dac21))
 - 이승민 회고 ([Velog](https://velog.io/@tmdals3785/%ED%95%AD%ED%95%B4-99-1%EC%A3%BC%EC%B0%A8-%ED%9A%8C%EA%B3%A0-2))
