@@ -7,7 +7,7 @@
 ### 다사(DASA)
 ![SALE](https://user-images.githubusercontent.com/76721552/133780951-c47b1aef-8e79-4446-83b4-8a9bda9ce6d2.jpg)
 ### 로그인 Page
-<img width="1439" alt="main" src="https://user-images.githubusercontent.com/76721552/133866752-4ffc0a3e-f2da-4dd1-8952-18ed43abac20.png">
+<img width="1439" alt="main" src="https://user-images.githubusercontent.com/76721552/133866752-4ffc0a3e-f2da-4dd1-8952-18ed43abac20.png" width="100" height="200">
 
 ### 회원가입 Page
 <img width="1437" alt="join" src="https://user-images.githubusercontent.com/76721552/133866861-d8e24e11-56aa-48fa-abb7-53b4c271dfbc.png">
