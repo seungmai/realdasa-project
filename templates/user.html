@@ -1,6 +1,18 @@
 <!DOCTYPE html>
+<!-- 사용자 화면 (찜한 상품 목록 화면) -->
 <html lang="en">
   <head>
+    <!-- sns Share -->
+    <meta property="og:title" content="원하는거 DASA!" />
+    <meta
+      property="og:description"
+      content="원하는 상품을 검색하고 나만의 찜목록에 콕❤"
+    />
+    <meta
+      property="og:image"
+      content="{{ url_for('static', filename='DASA_logo.png') }}"
+    />
+
     <!-- Webpage Title -->
     <title>JJIM | DASA</title>
 
@@ -82,7 +94,7 @@
       </div>
     </nav>
 
-    <!-- 상품카드 -->
+    <!-- 사용자가 찜한 상품 붙일 곳-->
     <section class="section">
       <div id="my-item-list"></div>
     </section>
