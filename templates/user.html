@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+<!-- 사용자 화면 (찜한 상품 목록 화면) -->
   <head>
     <!-- Webpage Title -->
     <title>JJIM | DASA</title>
@@ -9,6 +10,16 @@
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <!-- favicon -->
+    <link
+      rel="shortcut icon"
+      href="{{ url_for('static', filename='favicon.ico') }}"
+    />
+    <link
+      rel="apple-touch-icon-precomposed"
+      href="{{ url_for('static', filename='favicon.ico') }}"
     />
 
     <!-- Bulma CSS -->
@@ -21,9 +32,14 @@
       href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
       rel="stylesheet"
     />
+
     <!-- CSS -->
     <link
       href="{{ url_for('static', filename='style.css') }}"
+      rel="stylesheet"
+    />
+    <link
+      href="{{ url_for('static', filename='user.css') }}"
       rel="stylesheet"
     />
     <style>
@@ -42,7 +58,6 @@
     <script src="{{ url_for('static', filename='main.js') }}"></script>
 
     <script>
-
       $(document).ready(function () {
 
         // 사용자 개인 화면 열릴(JJIM 버튼 화면) 때 개인 찜 상품 목록 조회
@@ -86,6 +101,7 @@
           },
         });
       }
+      
     </script>
   </head>
   <body>
@@ -115,9 +131,13 @@
 
     <!-- 사용자가 찜한 상품 붙일 곳-->
     <section class="section">
-      <div class="media-content">
-        <div class="field card-card" id="my-item-list"></div>
-      </div>
+      <div id="my-item-list"></div>
     </section>
+
+    <!-- Font Awesome -->
+    <script
+      src="https://kit.fontawesome.com/6478f529f2.js"
+      crossorigin="anonymous"
+    ></script>
   </body>
 </html>

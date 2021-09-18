@@ -74,11 +74,7 @@ body {
 
 .card {
   margin: 3px;
-}
-
-.card-card {
-  display: flex;
-  justify-content: center;
+  padding-bottom: 10px;
 }
 
 .list-group .list-group-item {
@@ -110,4 +106,19 @@ input,
 .container {
   display: flex;
   justify-content: space-around;
+}
+
+.row-price {
+  color: red;
+  display: flex;
+  justify-content: right;
+}
+
+.card-text {
+  margin: 16px;
+  height: 6rem;
+}
+
+.btn-box {
+  margin-bottom: 0;
 }

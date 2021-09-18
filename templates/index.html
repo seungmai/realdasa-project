@@ -1,6 +1,18 @@
 <!DOCTYPE html>
+<!-- 메인 화면 -->
 <html lang="en">
   <head>
+    <!-- sns Share -->
+    <meta property="og:title" content="원하는거 DASA!" />
+    <meta
+      property="og:description"
+      content="원하는 상품을 검색하고 나만의 찜목록에 콕❤"
+    />
+    <meta
+      property="og:image"
+      content="{{ url_for('static', filename='DASA_logo.png') }}"
+    />
+
     <!-- Webpage Title -->
     <title>필요한게 있다면 DASA</title>
 
@@ -12,6 +24,17 @@
       name="viewport"
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
+
+    <!-- favicon -->
+    <link
+      rel="shortcut icon"
+      href="{{ url_for('static', filename='favicon.ico') }}"
+    />
+    <link
+      rel="apple-touch-icon-precomposed"
+      href="{{ url_for('static', filename='favicon.ico') }}"
+    />
+
     <!-- Bulma CSS -->
     <link
       rel="stylesheet"
@@ -63,7 +86,7 @@
                 </a>
                 <a
                   class="button is-danger is-outlined"
-                  href="/user/{{ username }}"
+                  href="/user/{{username}}"
                   >JJIM</a
                 >
               </div>
@@ -86,6 +109,7 @@
     </section>
 
     <!-- 검색창 -->
+    <!-- 엔터 시, 검색됩니다. -->
     <section class="section">
       <article class="media">
         <div class="media-content">
@@ -95,7 +119,7 @@
               id="keyword"
               type="text"
               placeholder="원하는 상품을 검색하세요"
-              onkeydown="JavaScript:Enter_search();"
+              onkeydown="JavaScript:Enter_search();" 
             />
           </div>
         </div>
