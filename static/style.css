@@ -86,10 +86,6 @@ input,
 .button {
   font-family: "GmarketSansBold";
 }
-.card-card {
-  display: flex;
-  justify-content: center;
-}
 
 #navMenu {
   display: flex;

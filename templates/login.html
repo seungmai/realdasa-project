@@ -1,7 +1,17 @@
 <!DOCTYPE html>
-<!-- 로그인, 회원가입 화면 -->
 <html lang="en">
   <head>
+    <!-- sns Share -->
+    <meta property="og:title" content="원하는거 DASA!" />
+    <meta
+      property="og:description"
+      content="원하는 상품을 검색하고 나만의 찜목록에 콕❤"
+    />
+    <meta
+      property="og:image"
+      content="{{ url_for('static', filename='DASA_logo.png') }}"
+    />
+
     <!-- Webpage Title -->
     <title>Log In | DASA</title>
 
@@ -50,15 +60,7 @@
     <!-- JS -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
-     <script>
-      $("#login_form").keypress(function(e){
 
-        if (e.keyCode === 13){
-
-         sign_in();
-        }
-      });
-    </script>
     <script>
       // {% if msg %}
       //     alert("{{ msg }}")
@@ -291,7 +293,6 @@
 
                 <div class="field">
                   <div class="control has-icons-left">
-                    <!--입력 후 엔터 시, 로그인-->
                     <input
                       id="input-password"
                       onkeydown="JavaScript:Enter_Check();"
@@ -311,7 +312,7 @@
               </div>
               <div id="div-sign-in-or-up" class="has-text-centered">
                 <nav class="level is-mobile">
-                  <button in="login_form"
+                  <button
                     class="level-item button is-sparta"
                     onclick="sign_in()"
                   >
