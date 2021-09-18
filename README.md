@@ -2,6 +2,9 @@
 
 - 다사(DASA) 팀(총 4명)
 - "DASA", 검색하고! 찜하고! 구매하고! 검색을 통해 다양한 상품을 띄어주고 구매할 수 있는 웹 서비스입니다. 찜 목록을 통해 저장되어있던 상품들을 구매 및 삭제까지!!! 구매하고 싶은 상품이 있으신가요? "DASA"에 오셔서 찜해보세요. GoGo~!
+- 웹사이트 ([웹사이트(WebSite Dasa)](http://bomborobom.shop/))
+- 데모영상 ([Youtube 영상 (Dasa)](https://www.youtube.com/watch?v=0H5dUxjQOAQ&t=39s))
+
 <img width="749" alt="스크린샷 2021-09-18 오전 11 38 57" src="https://user-images.githubusercontent.com/76721552/133869728-45fdc694-b234-4b8e-9391-a136bd0b5de4.png">
 
 # 🖥 프로젝트 소개
