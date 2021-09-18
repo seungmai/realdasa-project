@@ -1,7 +1,11 @@
 function searchItems() {
+  // 재검색 시, 검색 목록 초기화
   $("#item-list").empty();
+
+  // 검색어 keyword 변수에 받아오기
   let keyword = $("#keyword").val();
 
+  // 검색어(keyword)로 검색된 결과 상품목록 조회하여 index.html의 #item-list에 붙이기
   $.ajax({
     type: "GET",
     url: "/api/getItemList?keyword=" + keyword,
@@ -36,16 +40,19 @@ function searchItems() {
   });
 }
 
+// 로그아웃 시 메시지 띄워준 후 로그인 화면으로 이동
 function sign_out() {
   $.removeCookie("mytoken", { path: "/" });
   alert("안전하게 로그아웃이 되었습니다.");
   window.location.href = "/login";
 }
 
+// 메인 화면 이동
 function main() {
   window.location.href = "/";
 }
 
+// 찜 삼품 추가
 function save_jjim(productId, title, link, lprice, image) {
   $.ajax({
     type: "POST",
@@ -64,6 +71,7 @@ function save_jjim(productId, title, link, lprice, image) {
   });
 }
 
+// 찜 삼품 삭제
 function delete_jjim(productId) {
   $.ajax({
     type: "POST",
@@ -78,6 +86,7 @@ function delete_jjim(productId) {
   });
 }
 
+// 검색어 입력 후 엔터 클릭 시, 상품 목록 조회
 function Enter_search() {
   if (event.keyCode == 13) {
     searchItems();

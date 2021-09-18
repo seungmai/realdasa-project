@@ -1,7 +1,10 @@
 $(document).ready(function () {
+  
+  // 사용자 개인 화면 열릴(JJIM 버튼 화면) 때 개인 찜 상품 목록 조회
   getMyProducts();
 });
 
+// 사용자 개인 찜 상품 목록 조회하여 #my-item-list에 붙이기
 function getMyProducts() {
   $.ajax({
     type: "GET",
