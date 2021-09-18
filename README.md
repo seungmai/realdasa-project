@@ -68,7 +68,7 @@
 - Front-end: Html5, CSS3, JavaScript(ES6)
 - Back-end: Python(3.8), Pymongo(3.12.0), Flask(2.0.1) , Jinja2(2.0.1)
 
-# ⌨️ 느낀점
+# ⌨️ 팀 프로젝트 회고
 
 - 박새봄 회고 ([미정]())
 - 송지은 회고 ([Naver]())
