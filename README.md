@@ -11,7 +11,7 @@
 
 ### 다사(DASA)
 
-![SALE](https://user-images.githubusercontent.com/76721552/133780951-c47b1aef-8e79-4446-83b4-8a9bda9ce6d2.jpg)
+![SALE](https://user-images.githubusercontent.com/76721552/146214186-1d7123e2-3aa4-4359-8b8a-34e4baf3907a.png)
 
 ### 로그인 Page
 
