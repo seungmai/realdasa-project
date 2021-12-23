@@ -1,0 +1,42 @@
+body {
+  background-color: #f2d184;
+}
+
+#my-item-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.jjim-list {
+  display: flex;
+  margin-bottom: 5px;
+}
+
+.item-img {
+  width: 12rem;
+  margin-right: 10%;
+}
+
+.list-text {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.list-title {
+  display: flex;
+  flex-direction: column;
+  width: 35rem;
+}
+
+.price {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 30px;
+}
+
+.button {
+  margin-left: 10%;
+  margin-bottom: 4%;
+}
